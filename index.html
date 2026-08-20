@@ -52,6 +52,7 @@
           <a class="transition-colors hover:text-coral" href="#conceito">O conceito</a>
           <a class="transition-colors hover:text-coral" href="#fluxo">O fluxo</a>
           <a class="transition-colors hover:text-coral" href="#comandos">Comandos</a>
+          <a class="transition-colors hover:text-coral" href="#colaboracao">Colaboração</a>
         </div>
         <a href="#comandos" class="border-2 border-ink bg-lime px-4 py-2 font-display text-sm font-bold shadow-[3px_3px_0_#161616] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none">começar →</a>
       </nav>
@@ -103,6 +104,30 @@
       </section>
 
       <section id="comandos" class="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28"><div class="grid gap-12 lg:grid-cols-[.8fr_1.2fr]"><div><p class="mb-3 font-mono text-xs font-semibold uppercase tracking-[.22em] text-coral">kit de partida</p><h2 class="font-display text-4xl font-bold tracking-tight sm:text-5xl">Comandos que<br />você vai usar.</h2></div><div class="border-2 border-ink bg-paper shadow-hard"><div class="grid border-b-2 border-ink sm:grid-cols-3"><div class="border-b-2 border-ink p-4 font-mono text-xs font-semibold sm:border-b-0 sm:border-r-2">criar</div><div class="border-b-2 border-ink p-4 font-mono text-xs font-semibold sm:border-b-0 sm:border-r-2">registrar</div><div class="p-4 font-mono text-xs font-semibold">colaborar</div></div><div class="grid gap-6 p-6 sm:grid-cols-2"><div><code class="font-mono text-sm font-semibold text-coral">git init</code><p class="mt-2 text-sm text-ink/60">Inicia um repositório local.</p></div><div><code class="font-mono text-sm font-semibold text-coral">git status</code><p class="mt-2 text-sm text-ink/60">Mostra o que mudou.</p></div><div><code class="font-mono text-sm font-semibold text-coral">git commit -m "..."</code><p class="mt-2 text-sm text-ink/60">Salva um ponto na história.</p></div><div><code class="font-mono text-sm font-semibold text-coral">git push</code><p class="mt-2 text-sm text-ink/60">Publica commits no remoto.</p></div></div></div></div></section>
+      <section id="primeiro-repo" class="border-t-2 border-ink bg-mist">
+        <div class="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28">
+          <div class="mb-12"><p class="mb-3 font-mono text-xs font-semibold uppercase tracking-[.22em] text-coral">capítulo 02 · prática</p><h2 class="font-display text-4xl font-bold tracking-tight sm:text-5xl">Seu primeiro<br />repositório.</h2></div>
+          <div class="grid gap-5 md:grid-cols-3">
+            <article class="border-2 border-ink bg-paper p-6"><span class="font-mono text-3xl font-semibold text-coral">01</span><h3 class="mt-12 font-display text-2xl font-bold">Configure</h3><p class="mt-3 text-sm leading-relaxed text-ink/65">Identifique seus commits uma única vez no computador.</p><pre class="mt-6 overflow-x-auto border-2 border-ink bg-ink p-4 font-mono text-xs leading-relaxed text-lime"><code>git config --global user.name &quot;Seu nome&quot;&#10;git config --global user.email &quot;voce@email.com&quot;</code></pre></article>
+            <article class="border-2 border-ink bg-paper p-6"><span class="font-mono text-3xl font-semibold text-coral">02</span><h3 class="mt-12 font-display text-2xl font-bold">Inicie</h3><p class="mt-3 text-sm leading-relaxed text-ink/65">Transforme uma pasta em um projeto versionado.</p><pre class="mt-6 overflow-x-auto border-2 border-ink bg-ink p-4 font-mono text-xs leading-relaxed text-lime"><code>mkdir meu-projeto&#10;cd meu-projeto&#10;git init</code></pre></article>
+            <article class="border-2 border-ink bg-paper p-6"><span class="font-mono text-3xl font-semibold text-coral">03</span><h3 class="mt-12 font-display text-2xl font-bold">Publique</h3><p class="mt-3 text-sm leading-relaxed text-ink/65">Conecte o local ao GitHub e envie sua história.</p><pre class="mt-6 overflow-x-auto border-2 border-ink bg-ink p-4 font-mono text-xs leading-relaxed text-lime"><code>git remote add origin URL&#10;git branch -M main&#10;git push -u origin main</code></pre></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="colaboracao" class="border-y-2 border-ink bg-coral">
+        <div class="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28">
+          <div class="grid gap-12 lg:grid-cols-[.75fr_1.25fr]">
+            <div><p class="mb-3 font-mono text-xs font-semibold uppercase tracking-[.22em]">capítulo 03 · equipe</p><h2 class="font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl">Branches são<br />espaço para pensar.</h2><p class="mt-6 max-w-sm leading-relaxed text-ink/70">Uma branch separa uma ideia da versão principal. Assim, o time pode construir, revisar e só depois integrar.</p></div>
+            <div class="border-2 border-ink bg-paper p-6 shadow-hard"><div class="mb-8 flex items-center gap-3 font-mono text-xs"><span class="h-3 w-3 rounded-full bg-ink"></span> fluxo de uma feature</div><div class="space-y-5 font-mono text-sm"><div class="flex items-center gap-3"><span class="w-20 text-ink/50">main</span><span class="h-0.5 flex-1 bg-ink"></span><span class="border-2 border-ink bg-lime px-2 py-1 text-xs">base</span></div><div class="ml-10 border-l-2 border-dashed border-ink pl-5"><div class="flex items-center gap-3"><span class="w-20 text-ink/50">feature</span><span class="h-0.5 flex-1 bg-coral"></span><span class="border-2 border-ink bg-coral px-2 py-1 text-xs">código</span></div><p class="mt-5 text-xs leading-relaxed text-ink/60"><span class="text-coral">$</span> git switch -c feature/login<br /><span class="text-coral">$</span> git add . &amp;&amp; git commit -m &quot;feat: login&quot;</p></div><div class="flex items-center gap-3"><span class="w-20 text-ink/50">pull request</span><span class="h-0.5 flex-1 bg-ink"></span><span class="border-2 border-ink bg-lime px-2 py-1 text-xs">merge</span></div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="checklist" class="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28">
+        <div class="grid gap-12 lg:grid-cols-[.8fr_1.2fr]"><div><p class="mb-3 font-mono text-xs font-semibold uppercase tracking-[.22em] text-coral">fechamento</p><h2 class="font-display text-4xl font-bold tracking-tight sm:text-5xl">Antes do<br />push.</h2><p class="mt-6 max-w-sm leading-relaxed text-ink/65">Uma revisão curta evita surpresas grandes. Faça dela parte do ritual.</p></div><div class="border-2 border-ink bg-paper shadow-hard"><div class="border-b-2 border-ink bg-lime p-5 font-display text-xl font-bold">checklist do commit</div><ul class="divide-y-2 divide-ink/15 p-2"><li class="flex gap-4 p-4"><span class="font-mono text-coral">01</span><span>O commit descreve uma mudança específica?</span></li><li class="flex gap-4 p-4"><span class="font-mono text-coral">02</span><span>O código foi testado no caminho principal?</span></li><li class="flex gap-4 p-4"><span class="font-mono text-coral">03</span><span>Arquivos secretos e dependências desnecessárias ficaram fora?</span></li><li class="flex gap-4 p-4"><span class="font-mono text-coral">04</span><span>A mensagem explica o que mudou, e não apenas como?</span></li></ul></div></div>
+      </section>
+
     </main>
 
     <footer class="border-t-2 border-ink bg-lime"><div class="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-8 text-sm sm:flex-row sm:items-center sm:justify-between lg:px-8"><p class="font-display font-bold">Faça commit das suas ideias.</p><p class="font-mono text-xs">feito para aprender · 2026</p></div></footer>
