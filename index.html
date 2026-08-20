@@ -36,6 +36,8 @@
       html { scroll-behavior: smooth; }
       body { background: #f4f0e8; color: #161616; }
       .grid-paper { background-image: linear-gradient(#16161612 1px, transparent 1px), linear-gradient(90deg, #16161612 1px, transparent 1px); background-size: 28px 28px; }
+      .text-sm { font-size: 1rem; line-height: 1.6; }
+      .text-xs { font-size: .875rem; line-height: 1.5; }
       .reveal { animation: rise .7s cubic-bezier(.2,.8,.2,1) both; }
       .delay-1 { animation-delay: .12s; }
       .delay-2 { animation-delay: .24s; }
@@ -48,13 +50,13 @@
     <header class="border-b-2 border-ink bg-paper/90 backdrop-blur-sm">
       <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-5 lg:px-8" aria-label="Navegação principal">
         <a href="#inicio" class="font-display text-xl font-bold tracking-tight">git<span class="text-coral">/</span>hub<span class="text-coral">.</span></a>
-        <div class="hidden items-center gap-7 text-sm font-medium md:flex">
+        <div class="hidden items-center gap-7 text-base font-medium md:flex">
           <a class="transition-colors hover:text-coral" href="#conceito">O conceito</a>
           <a class="transition-colors hover:text-coral" href="#fluxo">O fluxo</a>
           <a class="transition-colors hover:text-coral" href="#comandos">Comandos</a>
           <a class="transition-colors hover:text-coral" href="#colaboracao">Colaboração</a>
         </div>
-        <a href="#comandos" class="border-2 border-ink bg-lime px-4 py-2 font-display text-sm font-bold shadow-[3px_3px_0_#161616] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none">começar →</a>
+        <a href="#comandos" class="border-2 border-ink bg-lime px-4 py-2 font-display text-base font-bold shadow-[3px_3px_0_#161616] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none">começar →</a>
       </nav>
     </header>
 
@@ -74,7 +76,7 @@
             <div class="absolute -right-3 -top-3 h-full w-full border-2 border-ink bg-coral"></div>
             <div class="relative border-2 border-ink bg-ink p-6 text-paper shadow-hard">
               <div class="mb-10 flex items-center justify-between border-b border-paper/20 pb-4 font-mono text-xs text-paper/60"><span>~/meu-projeto</span><span>● ● ●</span></div>
-              <div class="space-y-5 font-mono text-sm leading-relaxed">
+              <div class="space-y-5 font-mono text-base leading-relaxed">
                 <p><span class="text-lime">$</span> git status<br /><span class="text-paper/50">On branch main</span></p>
                 <p><span class="text-lime">$</span> git add .<br /><span class="text-coral">→</span> preparando mudanças</p>
                 <p><span class="text-lime">$</span> git commit -m <span class="text-lime">"primeiro passo"</span><br /><span class="text-paper/50">[main 7a3b2c1] primeiro passo</span></p>
@@ -87,10 +89,10 @@
       </section>
 
       <section id="conceito" class="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28">
-        <div class="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p class="mb-3 font-mono text-xs font-semibold uppercase tracking-[.22em] text-coral">a distinção essencial</p><h2 class="font-display text-4xl font-bold tracking-tight sm:text-5xl">Duas ferramentas.<br />Um jeito melhor de trabalhar.</h2></div><p class="max-w-sm text-sm leading-relaxed text-ink/60">Uma vive na sua máquina. A outra conecta pessoas, projetos e possibilidades.</p></div>
+        <div class="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p class="mb-3 font-mono text-sm font-semibold uppercase tracking-[.22em] text-coral">a distinção essencial</p><h2 class="font-display text-4xl font-bold tracking-tight sm:text-5xl">Duas ferramentas.<br />Um jeito melhor de trabalhar.</h2></div><p class="max-w-sm text-base leading-relaxed text-ink/60">Uma vive na sua máquina. A outra conecta pessoas, projetos e possibilidades.</p></div>
         <div class="grid gap-5 md:grid-cols-2">
-          <article class="border-2 border-ink bg-mist p-7 shadow-hard"><div class="mb-14 flex items-start justify-between"><span class="border-2 border-ink bg-paper px-3 py-1 font-mono text-xs font-semibold">LOCAL</span><span class="font-mono text-3xl">01</span></div><h3 class="font-display text-3xl font-bold">Git</h3><p class="mt-4 max-w-md leading-relaxed text-ink/70">Sistema de controle de versão distribuído. Ele acompanha alterações, cria pontos de retorno e permite experimentar sem medo, mesmo offline.</p></article>
-          <article class="border-2 border-ink bg-coral p-7 shadow-hard"><div class="mb-14 flex items-start justify-between"><span class="border-2 border-ink bg-paper px-3 py-1 font-mono text-xs font-semibold">REMOTO</span><span class="font-mono text-3xl">02</span></div><h3 class="font-display text-3xl font-bold">GitHub</h3><p class="mt-4 max-w-md leading-relaxed text-ink/80">Plataforma online que hospeda repositórios Git e adiciona colaboração: pull requests, revisão de código, issues e automações.</p></article>
+          <article class="border-2 border-ink bg-mist p-7 shadow-hard"><div class="mb-14 flex items-start justify-between"><span class="border-2 border-ink bg-paper px-3 py-1 font-mono text-sm font-semibold">LOCAL</span><span class="font-mono text-3xl">01</span></div><h3 class="font-display text-3xl font-bold">Git</h3><p class="mt-4 max-w-md text-lg leading-relaxed text-ink/70">Sistema de controle de versão distribuído. Ele acompanha alterações, cria pontos de retorno e permite experimentar sem medo, mesmo offline.</p></article>
+          <article class="border-2 border-ink bg-coral p-7 shadow-hard"><div class="mb-14 flex items-start justify-between"><span class="border-2 border-ink bg-paper px-3 py-1 font-mono text-sm font-semibold">REMOTO</span><span class="font-mono text-3xl">02</span></div><h3 class="font-display text-3xl font-bold">GitHub</h3><p class="mt-4 max-w-md text-lg leading-relaxed text-ink/80">Plataforma online que hospeda repositórios Git e adiciona colaboração: pull requests, revisão de código, issues e automações.</p></article>
         </div>
       </section>
 
