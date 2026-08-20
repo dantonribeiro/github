@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Um guia visual e prático para entender Git e GitHub." />
+    <title>Git + GitHub | Fluxo sem medo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ['Space Grotesk', 'sans-serif'],
+              body: ['DM Sans', 'sans-serif'],
+              mono: ['IBM Plex Mono', 'monospace']
+            },
+            colors: {
+              ink: '#161616',
+              paper: '#f4f0e8',
+              lime: '#c9f45a',
+              coral: '#ff765f',
+              mist: '#dfe5dc'
+            },
+            boxShadow: {
+              hard: '5px 5px 0 #161616'
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      html { scroll-behavior: smooth; }
+      body { background: #f4f0e8; color: #161616; }
+      .grid-paper { background-image: linear-gradient(#16161612 1px, transparent 1px), linear-gradient(90deg, #16161612 1px, transparent 1px); background-size: 28px 28px; }
+      .reveal { animation: rise .7s cubic-bezier(.2,.8,.2,1) both; }
+      .delay-1 { animation-delay: .12s; }
+      .delay-2 { animation-delay: .24s; }
+      .delay-3 { animation-delay: .36s; }
+      @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+      @media (prefers-reduced-motion: reduce) { .reveal { animation: none; } }
+    </style>
+  </head>
+  <body class="font-body selection:bg-coral selection:text-ink">
+    <header class="border-b-2 border-ink bg-paper/90 backdrop-blur-sm">
+      <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-5 lg:px-8" aria-label="Navegação principal">
+        <a href="#inicio" class="font-display text-xl font-bold tracking-tight">git<span class="text-coral">/</span>hub<span class="text-coral">.</span></a>
+        <div class="hidden items-center gap-7 text-sm font-medium md:flex">
+          <a class="transition-colors hover:text-coral" href="#conceito">O conceito</a>
+          <a class="transition-colors hover:text-coral" href="#fluxo">O fluxo</a>
+          <a class="transition-colors hover:text-coral" href="#comandos">Comandos</a>
+        </div>
+        <a href="#comandos" class="border-2 border-ink bg-lime px-4 py-2 font-display text-sm font-bold shadow-[3px_3px_0_#161616] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none">começar →</a>
+      </nav>
+    </header>
+
+    <main id="inicio">
+      <section class="grid-paper overflow-hidden border-b-2 border-ink">
+        <div class="mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 lg:grid-cols-[1.1fr_.9fr] lg:px-8 lg:py-28">
+          <div class="reveal">
+            <p class="mb-6 flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[.22em] text-coral"><span class="h-2 w-2 bg-coral"></span> guia de bolso · 01</p>
+            <h1 class="max-w-3xl font-display text-5xl font-bold leading-[.95] tracking-[-.06em] sm:text-7xl lg:text-8xl">Código bom merece <span class="relative inline-block whitespace-nowrap">história<span class="absolute -bottom-1 left-0 h-2 w-full -rotate-1 bg-lime"></span></span>.</h1>
+            <p class="mt-8 max-w-xl text-lg leading-relaxed text-ink/70">Git registra cada decisão. GitHub transforma esse registro em colaboração. Juntos, eles dão contexto para o código e confiança para o time.</p>
+            <div class="mt-10 flex flex-wrap gap-4">
+              <a href="#conceito" class="border-2 border-ink bg-ink px-5 py-3 font-display font-bold text-paper transition-colors hover:bg-coral hover:text-ink">entender a diferença</a>
+              <a href="#fluxo" class="px-2 py-3 font-mono text-sm font-semibold underline decoration-coral decoration-2 underline-offset-4">ver o fluxo ↓</a>
+            </div>
+          </div>
+          <div class="reveal delay-2 relative mx-auto w-full max-w-md">
+            <div class="absolute -right-3 -top-3 h-full w-full border-2 border-ink bg-coral"></div>
+            <div class="relative border-2 border-ink bg-ink p-6 text-paper shadow-hard">
+              <div class="mb-10 flex items-center justify-between border-b border-paper/20 pb-4 font-mono text-xs text-paper/60"><span>~/meu-projeto</span><span>● ● ●</span></div>
+              <div class="space-y-5 font-mono text-sm leading-relaxed">
+                <p><span class="text-lime">$</span> git status<br /><span class="text-paper/50">On branch main</span></p>
+                <p><span class="text-lime">$</span> git add .<br /><span class="text-coral">→</span> preparando mudanças</p>
+                <p><span class="text-lime">$</span> git commit -m <span class="text-lime">"primeiro passo"</span><br /><span class="text-paper/50">[main 7a3b2c1] primeiro passo</span></p>
+                <p><span class="text-lime">$</span> git push origin main<br /><span class="text-lime">✓</span> publicado no GitHub</p>
+              </div>
+              <div class="mt-12 flex items-end justify-between"><span class="font-display text-4xl font-bold text-lime">ship it.</span><span class="font-mono text-xs text-paper/50">100% rastreável</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="conceito" class="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28">
+        <div class="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p class="mb-3 font-mono text-xs font-semibold uppercase tracking-[.22em] text-coral">a distinção essencial</p><h2 class="font-display text-4xl font-bold tracking-tight sm:text-5xl">Duas ferramentas.<br />Um jeito melhor de trabalhar.</h2></div><p class="max-w-sm text-sm leading-relaxed text-ink/60">Uma vive na sua máquina. A outra conecta pessoas, projetos e possibilidades.</p></div>
+        <div class="grid gap-5 md:grid-cols-2">
+          <article class="border-2 border-ink bg-mist p-7 shadow-hard"><div class="mb-14 flex items-start justify-between"><span class="border-2 border-ink bg-paper px-3 py-1 font-mono text-xs font-semibold">LOCAL</span><span class="font-mono text-3xl">01</span></div><h3 class="font-display text-3xl font-bold">Git</h3><p class="mt-4 max-w-md leading-relaxed text-ink/70">Sistema de controle de versão distribuído. Ele acompanha alterações, cria pontos de retorno e permite experimentar sem medo, mesmo offline.</p></article>
+          <article class="border-2 border-ink bg-coral p-7 shadow-hard"><div class="mb-14 flex items-start justify-between"><span class="border-2 border-ink bg-paper px-3 py-1 font-mono text-xs font-semibold">REMOTO</span><span class="font-mono text-3xl">02</span></div><h3 class="font-display text-3xl font-bold">GitHub</h3><p class="mt-4 max-w-md leading-relaxed text-ink/80">Plataforma online que hospeda repositórios Git e adiciona colaboração: pull requests, revisão de código, issues e automações.</p></article>
+        </div>
+      </section>
+
+      <section id="fluxo" class="border-y-2 border-ink bg-ink text-paper">
+        <div class="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28"><div class="grid gap-14 lg:grid-cols-[.7fr_1.3fr]"><div><p class="mb-3 font-mono text-xs font-semibold uppercase tracking-[.22em] text-lime">o ciclo diário</p><h2 class="font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl">Do rascunho<br />ao mundo.</h2><p class="mt-6 max-w-sm leading-relaxed text-paper/60">Cada etapa tem uma intenção clara. O fluxo fica previsível, e previsibilidade libera energia para criar.</p></div><div class="grid gap-0 sm:grid-cols-2">
+          <div class="border-t border-paper/30 py-6 sm:border-r sm:pr-8"><span class="font-mono text-sm text-lime">01 / WORKTREE</span><h3 class="mt-3 font-display text-xl font-bold">Edite</h3><p class="mt-2 text-sm leading-relaxed text-paper/60">Faça mudanças no diretório de trabalho e explore uma ideia.</p></div>
+          <div class="border-t border-paper/30 py-6 sm:pl-8"><span class="font-mono text-sm text-lime">02 / STAGING</span><h3 class="mt-3 font-display text-xl font-bold">Selecione</h3><p class="mt-2 text-sm leading-relaxed text-paper/60">Use <code class="text-lime">git add</code> para escolher o que entra no próximo registro.</p></div>
+          <div class="border-t border-paper/30 py-6 sm:border-r sm:pr-8"><span class="font-mono text-sm text-lime">03 / HISTORY</span><h3 class="mt-3 font-display text-xl font-bold">Registre</h3><p class="mt-2 text-sm leading-relaxed text-paper/60">Crie um commit pequeno, claro e fácil de entender.</p></div>
+          <div class="border-t border-paper/30 py-6 sm:pl-8"><span class="font-mono text-sm text-lime">04 / REMOTE</span><h3 class="mt-3 font-display text-xl font-bold">Compartilhe</h3><p class="mt-2 text-sm leading-relaxed text-paper/60">Envie para o GitHub e abra espaço para revisão.</p></div>
+        </div></div></div>
+      </section>
+
+      <section id="comandos" class="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28"><div class="grid gap-12 lg:grid-cols-[.8fr_1.2fr]"><div><p class="mb-3 font-mono text-xs font-semibold uppercase tracking-[.22em] text-coral">kit de partida</p><h2 class="font-display text-4xl font-bold tracking-tight sm:text-5xl">Comandos que<br />você vai usar.</h2></div><div class="border-2 border-ink bg-paper shadow-hard"><div class="grid border-b-2 border-ink sm:grid-cols-3"><div class="border-b-2 border-ink p-4 font-mono text-xs font-semibold sm:border-b-0 sm:border-r-2">criar</div><div class="border-b-2 border-ink p-4 font-mono text-xs font-semibold sm:border-b-0 sm:border-r-2">registrar</div><div class="p-4 font-mono text-xs font-semibold">colaborar</div></div><div class="grid gap-6 p-6 sm:grid-cols-2"><div><code class="font-mono text-sm font-semibold text-coral">git init</code><p class="mt-2 text-sm text-ink/60">Inicia um repositório local.</p></div><div><code class="font-mono text-sm font-semibold text-coral">git status</code><p class="mt-2 text-sm text-ink/60">Mostra o que mudou.</p></div><div><code class="font-mono text-sm font-semibold text-coral">git commit -m "..."</code><p class="mt-2 text-sm text-ink/60">Salva um ponto na história.</p></div><div><code class="font-mono text-sm font-semibold text-coral">git push</code><p class="mt-2 text-sm text-ink/60">Publica commits no remoto.</p></div></div></div></div></section>
+    </main>
+
+    <footer class="border-t-2 border-ink bg-lime"><div class="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-8 text-sm sm:flex-row sm:items-center sm:justify-between lg:px-8"><p class="font-display font-bold">Faça commit das suas ideias.</p><p class="font-mono text-xs">feito para aprender · 2026</p></div></footer>
+  </body>
+</html>
