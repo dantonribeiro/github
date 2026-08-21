@@ -3,31 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Um guia visual e prático para entender Git e GitHub." />
-    <title>Git + GitHub | Fluxo sem medo</title>
+    <meta name="description" content="Guia completo do Git: do zero ao avançado." />
+    <title>Guia completo do Git | Do zero ao avançado</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              display: ['Space Grotesk', 'sans-serif'],
-              body: ['DM Sans', 'sans-serif'],
-              mono: ['IBM Plex Mono', 'monospace']
-            },
-            colors: {
-              ink: '#161616',
-              paper: '#f4f0e8',
-              lime: '#c9f45a',
-              coral: '#ff765f',
-              mist: '#dfe5dc'
-            },
-            boxShadow: {
-              hard: '5px 5px 0 #161616'
-            }
-          }
-        }
-      }
+      tailwind.config = { theme: { extend: { fontFamily: { display: ['Space Grotesk', 'sans-serif'], body: ['DM Sans', 'sans-serif'], mono: ['IBM Plex Mono', 'monospace'] }, colors: { ink: '#161616', paper: '#f4f0e8', lime: '#c9f45a', coral: '#ff765f', mist: '#dfe5dc', sky: '#b9d9ff' }, boxShadow: { hard: '5px 5px 0 #161616' } } } };
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -38,113 +18,58 @@
       .grid-paper { background-image: linear-gradient(#16161612 1px, transparent 1px), linear-gradient(90deg, #16161612 1px, transparent 1px); background-size: 28px 28px; }
       .text-sm { font-size: 1rem; line-height: 1.6; }
       .text-xs { font-size: .875rem; line-height: 1.5; }
-      .reveal { animation: rise .7s cubic-bezier(.2,.8,.2,1) both; }
       .scroll-reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
       .scroll-reveal.is-visible { opacity: 1; transform: translateY(0); }
-      .delay-1 { animation-delay: .12s; }
-      .delay-2 { animation-delay: .24s; }
-      .delay-3 { animation-delay: .36s; }
-      @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .reveal { animation: none; } .scroll-reveal { opacity: 1; transform: none; transition: none; } }
+      .delay-1 { transition-delay: .12s; }
+      .delay-2 { transition-delay: .24s; }
+      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .scroll-reveal { opacity: 1; transform: none; transition: none; } }
     </style>
   </head>
   <body class="font-body selection:bg-coral selection:text-ink">
-    <header class="border-b-2 border-ink bg-paper/90 backdrop-blur-sm">
-      <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-5 lg:px-8" aria-label="Navegação principal">
-        <a href="#inicio" class="font-display text-xl font-bold tracking-tight">git<span class="text-coral">/</span>hub<span class="text-coral">.</span></a>
-        <div class="hidden items-center gap-7 text-base font-medium md:flex">
-          <a class="transition-colors hover:text-coral" href="#conceito">O conceito</a>
-          <a class="transition-colors hover:text-coral" href="#fluxo">O fluxo</a>
-          <a class="transition-colors hover:text-coral" href="#comandos">Comandos</a>
-          <a class="transition-colors hover:text-coral" href="#colaboracao">Colaboração</a>
-        </div>
-        <a href="#comandos" class="border-2 border-ink bg-lime px-4 py-2 font-display text-base font-bold shadow-[3px_3px_0_#161616] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none">começar →</a>
+    <header class="sticky top-0 z-10 border-b-2 border-ink bg-paper/95 backdrop-blur-sm">
+      <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 lg:px-8" aria-label="Navegação principal">
+        <a href="#inicio" class="font-display text-xl font-bold tracking-tight">git<span class="text-coral">/</span>guia<span class="text-coral">.</span></a>
+        <div class="hidden items-center gap-6 text-base font-medium lg:flex"><a class="hover:text-coral" href="#fundamentos">Fundamentos</a><a class="hover:text-coral" href="#fluxo">Fluxo</a><a class="hover:text-coral" href="#branches">Branches</a><a class="hover:text-coral" href="#avancado">Avançado</a></div>
+        <a href="#referencia" class="border-2 border-ink bg-lime px-4 py-2 font-display text-base font-bold shadow-[3px_3px_0_#161616] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none">consultar →</a>
       </nav>
     </header>
 
     <main id="inicio">
-      <section class="grid-paper overflow-hidden border-b-2 border-ink">
-        <div class="mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 lg:grid-cols-[1.1fr_.9fr] lg:px-8 lg:py-28">
-          <div class="reveal">
-            <p class="mb-6 flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[.22em] text-coral"><span class="h-2 w-2 bg-coral"></span> guia de bolso · 01</p>
-            <h1 class="max-w-3xl font-display text-5xl font-bold leading-[.95] tracking-[-.06em] sm:text-7xl lg:text-8xl">Código bom merece <span class="relative inline-block whitespace-nowrap">história<span class="absolute -bottom-1 left-0 h-2 w-full -rotate-1 bg-lime"></span></span>.</h1>
-            <p class="mt-8 max-w-xl text-lg leading-relaxed text-ink/70">Git registra cada decisão. GitHub transforma esse registro em colaboração. Juntos, eles dão contexto para o código e confiança para o time.</p>
-            <div class="mt-10 flex flex-wrap gap-4">
-              <a href="#conceito" class="border-2 border-ink bg-ink px-5 py-3 font-display font-bold text-paper transition-colors hover:bg-coral hover:text-ink">entender a diferença</a>
-              <a href="#fluxo" class="px-2 py-3 font-mono text-sm font-semibold underline decoration-coral decoration-2 underline-offset-4">ver o fluxo ↓</a>
-            </div>
-          </div>
-          <div class="reveal delay-2 relative mx-auto w-full max-w-md">
-            <div class="absolute -right-3 -top-3 h-full w-full border-2 border-ink bg-coral"></div>
-            <div class="relative border-2 border-ink bg-ink p-6 text-paper shadow-hard">
-              <div class="mb-10 flex items-center justify-between border-b border-paper/20 pb-4 font-mono text-xs text-paper/60"><span>~/meu-projeto</span><span>● ● ●</span></div>
-              <div class="space-y-5 font-mono text-base leading-relaxed">
-                <p><span class="text-lime">$</span> git status<br /><span class="text-paper/50">On branch main</span></p>
-                <p><span class="text-lime">$</span> git add .<br /><span class="text-coral">→</span> preparando mudanças</p>
-                <p><span class="text-lime">$</span> git commit -m <span class="text-lime">"primeiro passo"</span><br /><span class="text-paper/50">[main 7a3b2c1] primeiro passo</span></p>
-                <p><span class="text-lime">$</span> git push origin main<br /><span class="text-lime">✓</span> publicado no GitHub</p>
-              </div>
-              <div class="mt-12 flex items-end justify-between"><span class="font-display text-4xl font-bold text-lime">ship it.</span><span class="font-mono text-xs text-paper/50">100% rastreável</span></div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <section class="grid-paper overflow-hidden border-b-2 border-ink"><div class="mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 lg:grid-cols-[1.05fr_.95fr] lg:px-8 lg:py-28"><div class="scroll-reveal"><p class="mb-6 flex items-center gap-3 font-mono text-sm font-semibold uppercase tracking-[.2em] text-coral"><span class="h-2 w-2 bg-coral"></span> apostila visual · 2026</p><h1 class="max-w-3xl font-display text-5xl font-bold leading-[.95] tracking-[-.06em] sm:text-7xl lg:text-8xl">Guia completo <span class="relative inline-block whitespace-nowrap">do Git<span class="absolute -bottom-1 left-0 h-2 w-full -rotate-1 bg-lime"></span></span>.</h1><p class="mt-8 max-w-xl text-lg leading-relaxed text-ink/70">Do primeiro <code>git init</code> ao rebase, conflitos e investigação de bugs. Uma trilha prática para entender o sistema que dá memória ao seu código.</p><div class="mt-10 flex flex-wrap gap-4"><a href="#fundamentos" class="border-2 border-ink bg-ink px-5 py-3 font-display font-bold text-paper transition-colors hover:bg-coral hover:text-ink">começar do zero</a><a href="#referencia" class="px-2 py-3 font-mono text-base font-semibold underline decoration-coral decoration-2 underline-offset-4">ir para comandos ↓</a></div></div><div class="scroll-reveal delay-2 relative mx-auto w-full max-w-md"><div class="absolute -right-3 -top-3 h-full w-full border-2 border-ink bg-coral"></div><div class="relative border-2 border-ink bg-ink p-6 text-paper shadow-hard"><div class="mb-8 flex items-center justify-between border-b border-paper/20 pb-4 font-mono text-sm text-paper/60"><span>~/meu-projeto</span><span>● ● ●</span></div><div class="space-y-5 font-mono text-base leading-relaxed"><p><span class="text-lime">$</span> git init<br /><span class="text-paper/50">Initialized empty repository</span></p><p><span class="text-lime">$</span> git add .<br /><span class="text-coral">→</span> staging area pronta</p><p><span class="text-lime">$</span> git commit -m <span class="text-lime">&quot;primeiro passo&quot;</span><br /><span class="text-paper/50">[main 7a3b2c1] primeiro passo</span></p><p><span class="text-lime">$</span> git push origin main<br /><span class="text-lime">✓</span> publicado no GitHub</p></div><div class="mt-10 flex items-end justify-between"><span class="font-display text-4xl font-bold text-lime">ship it.</span><span class="font-mono text-sm text-paper/50">história rastreável</span></div></div></div></div></section>
 
-      <section id="conceito" class="scroll-reveal mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28">
-        <div class="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p class="mb-3 font-mono text-sm font-semibold uppercase tracking-[.22em] text-coral">a distinção essencial</p><h2 class="font-display text-4xl font-bold tracking-tight sm:text-5xl">Duas ferramentas.<br />Um jeito melhor de trabalhar.</h2></div><p class="max-w-sm text-base leading-relaxed text-ink/60">Uma vive na sua máquina. A outra conecta pessoas, projetos e possibilidades.</p></div>
-        <div class="grid gap-5 md:grid-cols-2">
-          <article class="scroll-reveal border-2 border-ink bg-mist p-7 shadow-hard"><div class="mb-14 flex items-start justify-between"><span class="border-2 border-ink bg-paper px-3 py-1 font-mono text-sm font-semibold">LOCAL</span><span class="font-mono text-3xl">01</span></div><h3 class="font-display text-3xl font-bold">Git</h3><p class="mt-4 max-w-md text-lg leading-relaxed text-ink/70">Sistema de controle de versão distribuído. Ele acompanha alterações, cria pontos de retorno e permite experimentar sem medo, mesmo offline.</p></article>
-          <article class="scroll-reveal border-2 border-ink bg-coral p-7 shadow-hard"><div class="mb-14 flex items-start justify-between"><span class="border-2 border-ink bg-paper px-3 py-1 font-mono text-sm font-semibold">REMOTO</span><span class="font-mono text-3xl">02</span></div><h3 class="font-display text-3xl font-bold">GitHub</h3><p class="mt-4 max-w-md text-lg leading-relaxed text-ink/80">Plataforma online que hospeda repositórios Git e adiciona colaboração: pull requests, revisão de código, issues e automações.</p></article>
-        </div>
-      </section>
+      <section id="fundamentos" class="scroll-reveal mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28"><div class="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p class="mb-3 font-mono text-sm font-semibold uppercase tracking-[.2em] text-coral">capítulo 01 · base</p><h2 class="font-display text-4xl font-bold tracking-tight sm:text-5xl">O que você<br />precisa saber.</h2></div><p class="max-w-sm text-base leading-relaxed text-ink/60">Git é local e distribuído. GitHub hospeda repositórios e cria uma camada de colaboração.</p></div><div class="grid gap-5 md:grid-cols-2"><article class="scroll-reveal delay-1 border-2 border-ink bg-mist p-7 shadow-hard"><div class="mb-12 flex items-start justify-between"><span class="border-2 border-ink bg-paper px-3 py-1 font-mono text-sm font-semibold">LOCAL</span><span class="font-mono text-3xl">01</span></div><h3 class="font-display text-3xl font-bold">Git</h3><p class="mt-4 max-w-md text-lg leading-relaxed text-ink/70">Sistema de controle de versão que registra commits, permite voltar no tempo e desenvolver em paralelo.</p></article><article class="scroll-reveal delay-2 border-2 border-ink bg-coral p-7 shadow-hard"><div class="mb-12 flex items-start justify-between"><span class="border-2 border-ink bg-paper px-3 py-1 font-mono text-sm font-semibold">REMOTO</span><span class="font-mono text-3xl">02</span></div><h3 class="font-display text-3xl font-bold">GitHub</h3><p class="mt-4 max-w-md text-lg leading-relaxed text-ink/80">Plataforma para hospedar projetos Git, revisar código, acompanhar tarefas e automatizar entregas.</p></article></div></section>
 
-      <section id="fluxo" class="scroll-reveal border-y-2 border-ink bg-ink text-paper">
-        <div class="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28"><div class="grid gap-14 lg:grid-cols-[.7fr_1.3fr]"><div><p class="mb-3 font-mono text-xs font-semibold uppercase tracking-[.22em] text-lime">o ciclo diário</p><h2 class="font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl">Do rascunho<br />ao mundo.</h2><p class="mt-6 max-w-sm leading-relaxed text-paper/60">Cada etapa tem uma intenção clara. O fluxo fica previsível, e previsibilidade libera energia para criar.</p></div><div class="grid gap-0 sm:grid-cols-2">
-          <div class="border-t border-paper/30 py-6 sm:border-r sm:pr-8"><span class="font-mono text-sm text-lime">01 / WORKTREE</span><h3 class="mt-3 font-display text-xl font-bold">Edite</h3><p class="mt-2 text-sm leading-relaxed text-paper/60">Faça mudanças no diretório de trabalho e explore uma ideia.</p></div>
-          <div class="border-t border-paper/30 py-6 sm:pl-8"><span class="font-mono text-sm text-lime">02 / STAGING</span><h3 class="mt-3 font-display text-xl font-bold">Selecione</h3><p class="mt-2 text-sm leading-relaxed text-paper/60">Use <code class="text-lime">git add</code> para escolher o que entra no próximo registro.</p></div>
-          <div class="border-t border-paper/30 py-6 sm:border-r sm:pr-8"><span class="font-mono text-sm text-lime">03 / HISTORY</span><h3 class="mt-3 font-display text-xl font-bold">Registre</h3><p class="mt-2 text-sm leading-relaxed text-paper/60">Crie um commit pequeno, claro e fácil de entender.</p></div>
-          <div class="border-t border-paper/30 py-6 sm:pl-8"><span class="font-mono text-sm text-lime">04 / REMOTE</span><h3 class="mt-3 font-display text-xl font-bold">Compartilhe</h3><p class="mt-2 text-sm leading-relaxed text-paper/60">Envie para o GitHub e abra espaço para revisão.</p></div>
-        </div></div></div>
-      </section>
+      <section id="fluxo" class="scroll-reveal border-y-2 border-ink bg-ink text-paper"><div class="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28"><div class="grid gap-14 lg:grid-cols-[.7fr_1.3fr]"><div><p class="mb-3 font-mono text-sm font-semibold uppercase tracking-[.2em] text-lime">capítulo 02 · ciclo diário</p><h2 class="font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl">Da mudança<br />ao commit.</h2><p class="mt-6 max-w-sm text-lg leading-relaxed text-paper/60">O fluxo separa editar, selecionar, registrar e compartilhar. Cada etapa tem uma intenção.</p></div><div class="grid gap-0 sm:grid-cols-2"><div class="border-t border-paper/30 py-6 sm:border-r sm:pr-8"><span class="font-mono text-base text-lime">01 / WORKTREE</span><h3 class="mt-3 font-display text-2xl font-bold">Edite</h3><p class="mt-2 text-base leading-relaxed text-paper/60">Altere arquivos e experimente no diretório de trabalho.</p></div><div class="border-t border-paper/30 py-6 sm:pl-8"><span class="font-mono text-base text-lime">02 / STAGING</span><h3 class="mt-3 font-display text-2xl font-bold">Selecione</h3><p class="mt-2 text-base leading-relaxed text-paper/60">Use <code class="text-lime">git add</code> para preparar o próximo registro.</p></div><div class="border-t border-paper/30 py-6 sm:border-r sm:pr-8"><span class="font-mono text-base text-lime">03 / HISTORY</span><h3 class="mt-3 font-display text-2xl font-bold">Registre</h3><p class="mt-2 text-base leading-relaxed text-paper/60">Crie um commit pequeno e fácil de explicar.</p></div><div class="border-t border-paper/30 py-6 sm:pl-8"><span class="font-mono text-base text-lime">04 / REMOTE</span><h3 class="mt-3 font-display text-2xl font-bold">Compartilhe</h3><p class="mt-2 text-base leading-relaxed text-paper/60">Envie commits com <code class="text-lime">git push</code> e colabore.</p></div></div></div></div></section>
 
-      <section id="comandos" class="scroll-reveal mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28"><div class="grid gap-12 lg:grid-cols-[.8fr_1.2fr]"><div><p class="mb-3 font-mono text-xs font-semibold uppercase tracking-[.22em] text-coral">kit de partida</p><h2 class="font-display text-4xl font-bold tracking-tight sm:text-5xl">Comandos que<br />você vai usar.</h2></div><div class="border-2 border-ink bg-paper shadow-hard"><div class="grid border-b-2 border-ink sm:grid-cols-3"><div class="border-b-2 border-ink p-4 font-mono text-xs font-semibold sm:border-b-0 sm:border-r-2">criar</div><div class="border-b-2 border-ink p-4 font-mono text-xs font-semibold sm:border-b-0 sm:border-r-2">registrar</div><div class="p-4 font-mono text-xs font-semibold">colaborar</div></div><div class="grid gap-6 p-6 sm:grid-cols-2"><div><code class="font-mono text-sm font-semibold text-coral">git init</code><p class="mt-2 text-sm text-ink/60">Inicia um repositório local.</p></div><div><code class="font-mono text-sm font-semibold text-coral">git status</code><p class="mt-2 text-sm text-ink/60">Mostra o que mudou.</p></div><div><code class="font-mono text-sm font-semibold text-coral">git commit -m "..."</code><p class="mt-2 text-sm text-ink/60">Salva um ponto na história.</p></div><div><code class="font-mono text-sm font-semibold text-coral">git push</code><p class="mt-2 text-sm text-ink/60">Publica commits no remoto.</p></div></div></div></div></section>
-      <section id="primeiro-repo" class="scroll-reveal border-t-2 border-ink bg-mist">
-        <div class="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28">
-          <div class="mb-12"><p class="mb-3 font-mono text-xs font-semibold uppercase tracking-[.22em] text-coral">capítulo 02 · prática</p><h2 class="font-display text-4xl font-bold tracking-tight sm:text-5xl">Seu primeiro<br />repositório.</h2></div>
-          <div class="grid gap-5 md:grid-cols-3">
-            <article class="border-2 border-ink bg-paper p-6"><span class="font-mono text-3xl font-semibold text-coral">01</span><h3 class="mt-12 font-display text-2xl font-bold">Configure</h3><p class="mt-3 text-sm leading-relaxed text-ink/65">Identifique seus commits uma única vez no computador.</p><pre class="mt-6 overflow-x-auto border-2 border-ink bg-ink p-4 font-mono text-xs leading-relaxed text-lime"><code>git config --global user.name &quot;Seu nome&quot;&#10;git config --global user.email &quot;voce@email.com&quot;</code></pre></article>
-            <article class="border-2 border-ink bg-paper p-6"><span class="font-mono text-3xl font-semibold text-coral">02</span><h3 class="mt-12 font-display text-2xl font-bold">Inicie</h3><p class="mt-3 text-sm leading-relaxed text-ink/65">Transforme uma pasta em um projeto versionado.</p><pre class="mt-6 overflow-x-auto border-2 border-ink bg-ink p-4 font-mono text-xs leading-relaxed text-lime"><code>mkdir meu-projeto&#10;cd meu-projeto&#10;git init</code></pre></article>
-            <article class="border-2 border-ink bg-paper p-6"><span class="font-mono text-3xl font-semibold text-coral">03</span><h3 class="mt-12 font-display text-2xl font-bold">Publique</h3><p class="mt-3 text-sm leading-relaxed text-ink/65">Conecte o local ao GitHub e envie sua história.</p><pre class="mt-6 overflow-x-auto border-2 border-ink bg-ink p-4 font-mono text-xs leading-relaxed text-lime"><code>git remote add origin URL&#10;git branch -M main&#10;git push -u origin main</code></pre></article>
-          </div>
-        </div>
-      </section>
+      <section id="comandos" class="scroll-reveal mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28"><div class="grid gap-12 lg:grid-cols-[.75fr_1.25fr]"><div><p class="mb-3 font-mono text-sm font-semibold uppercase tracking-[.2em] text-coral">capítulo 03 · terminal</p><h2 class="font-display text-4xl font-bold tracking-tight sm:text-5xl">A caixa de<br />ferramentas.</h2><p class="mt-6 max-w-sm text-lg leading-relaxed text-ink/65">Estes comandos formam o vocabulário do trabalho diário.</p></div><div class="border-2 border-ink bg-paper shadow-hard"><div class="grid border-b-2 border-ink sm:grid-cols-3"><div class="border-b-2 border-ink p-4 font-mono text-base font-semibold sm:border-b-0 sm:border-r-2">criar</div><div class="border-b-2 border-ink p-4 font-mono text-base font-semibold sm:border-b-0 sm:border-r-2">registrar</div><div class="p-4 font-mono text-base font-semibold">conectar</div></div><div class="grid gap-7 p-7 sm:grid-cols-2"><div><code class="font-mono text-base font-semibold text-coral">git init</code><p class="mt-2 text-base text-ink/60">Inicia um repositório.</p></div><div><code class="font-mono text-base font-semibold text-coral">git status</code><p class="mt-2 text-base text-ink/60">Mostra o que mudou.</p></div><div><code class="font-mono text-base font-semibold text-coral">git commit -m &quot;...&quot;</code><p class="mt-2 text-base text-ink/60">Salva um ponto na história.</p></div><div><code class="font-mono text-base font-semibold text-coral">git push</code><p class="mt-2 text-base text-ink/60">Publica no remoto.</p></div><div><code class="font-mono text-base font-semibold text-coral">git pull</code><p class="mt-2 text-base text-ink/60">Baixa e integra atualizações.</p></div><div><code class="font-mono text-base font-semibold text-coral">git log --oneline</code><p class="mt-2 text-base text-ink/60">Consulta a história.</p></div></div></div></div></section>
 
-      <section id="colaboracao" class="scroll-reveal border-y-2 border-ink bg-coral">
-        <div class="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28">
-          <div class="grid gap-12 lg:grid-cols-[.75fr_1.25fr]">
-            <div><p class="mb-3 font-mono text-xs font-semibold uppercase tracking-[.22em]">capítulo 03 · equipe</p><h2 class="font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl">Branches são<br />espaço para pensar.</h2><p class="mt-6 max-w-sm leading-relaxed text-ink/70">Uma branch separa uma ideia da versão principal. Assim, o time pode construir, revisar e só depois integrar.</p></div>
-            <div class="border-2 border-ink bg-paper p-6 shadow-hard"><div class="mb-8 flex items-center gap-3 font-mono text-xs"><span class="h-3 w-3 rounded-full bg-ink"></span> fluxo de uma feature</div><div class="space-y-5 font-mono text-sm"><div class="flex items-center gap-3"><span class="w-20 text-ink/50">main</span><span class="h-0.5 flex-1 bg-ink"></span><span class="border-2 border-ink bg-lime px-2 py-1 text-xs">base</span></div><div class="ml-10 border-l-2 border-dashed border-ink pl-5"><div class="flex items-center gap-3"><span class="w-20 text-ink/50">feature</span><span class="h-0.5 flex-1 bg-coral"></span><span class="border-2 border-ink bg-coral px-2 py-1 text-xs">código</span></div><p class="mt-5 text-xs leading-relaxed text-ink/60"><span class="text-coral">$</span> git switch -c feature/login<br /><span class="text-coral">$</span> git add . &amp;&amp; git commit -m &quot;feat: login&quot;</p></div><div class="flex items-center gap-3"><span class="w-20 text-ink/50">pull request</span><span class="h-0.5 flex-1 bg-ink"></span><span class="border-2 border-ink bg-lime px-2 py-1 text-xs">merge</span></div></div></div>
-          </div>
-        </div>
-      </section>
+      <section id="branches" class="scroll-reveal border-y-2 border-ink bg-sky"><div class="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28"><div class="grid gap-12 lg:grid-cols-[.75fr_1.25fr]"><div><p class="mb-3 font-mono text-sm font-semibold uppercase tracking-[.2em]">capítulo 04 · colaboração</p><h2 class="font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl">Branches são<br />espaço para pensar.</h2><p class="mt-6 max-w-sm text-lg leading-relaxed text-ink/70">Construa uma ideia isolada, abra um Pull Request, revise e só depois integre à main.</p></div><div class="border-2 border-ink bg-paper p-7 shadow-hard"><p class="mb-7 font-mono text-base font-semibold">fluxo de uma feature</p><div class="space-y-6 font-mono text-base"><div class="flex items-center gap-3"><span class="w-28 text-ink/60">main</span><span class="h-0.5 flex-1 bg-ink"></span><span class="border-2 border-ink bg-lime px-2 py-1">base</span></div><div class="ml-8 border-l-2 border-dashed border-ink pl-5"><div class="flex items-center gap-3"><span class="w-28 text-ink/60">feature/login</span><span class="h-0.5 flex-1 bg-coral"></span><span class="border-2 border-ink bg-coral px-2 py-1">código</span></div><p class="mt-5 text-base leading-relaxed text-ink/65"><span class="text-coral">$</span> git switch -c feature/login<br /><span class="text-coral">$</span> git add . &amp;&amp; git commit -m &quot;feat: login&quot;</p></div><div class="flex items-center gap-3"><span class="w-28 text-ink/60">pull request</span><span class="h-0.5 flex-1 bg-ink"></span><span class="border-2 border-ink bg-lime px-2 py-1">merge</span></div></div></div></div></div></section>
 
-      <section id="checklist" class="scroll-reveal mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28">
-        <div class="grid gap-12 lg:grid-cols-[.8fr_1.2fr]"><div><p class="mb-3 font-mono text-xs font-semibold uppercase tracking-[.22em] text-coral">fechamento</p><h2 class="font-display text-4xl font-bold tracking-tight sm:text-5xl">Antes do<br />push.</h2><p class="mt-6 max-w-sm leading-relaxed text-ink/65">Uma revisão curta evita surpresas grandes. Faça dela parte do ritual.</p></div><div class="border-2 border-ink bg-paper shadow-hard"><div class="border-b-2 border-ink bg-lime p-5 font-display text-xl font-bold">checklist do commit</div><ul class="divide-y-2 divide-ink/15 p-2"><li class="flex gap-4 p-4"><span class="font-mono text-coral">01</span><span>O commit descreve uma mudança específica?</span></li><li class="flex gap-4 p-4"><span class="font-mono text-coral">02</span><span>O código foi testado no caminho principal?</span></li><li class="flex gap-4 p-4"><span class="font-mono text-coral">03</span><span>Arquivos secretos e dependências desnecessárias ficaram fora?</span></li><li class="flex gap-4 p-4"><span class="font-mono text-coral">04</span><span>A mensagem explica o que mudou, e não apenas como?</span></li></ul></div></div>
-      </section>
+      <section id="primeiro-repo" class="scroll-reveal mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28"><div class="mb-12"><p class="mb-3 font-mono text-sm font-semibold uppercase tracking-[.2em] text-coral">capítulo 05 · prática</p><h2 class="font-display text-4xl font-bold tracking-tight sm:text-5xl">Seu primeiro<br />repositório.</h2></div><div class="grid gap-5 md:grid-cols-3"><article class="border-2 border-ink bg-paper p-6"><span class="font-mono text-3xl font-semibold text-coral">01</span><h3 class="mt-10 font-display text-2xl font-bold">Configure</h3><p class="mt-3 text-base leading-relaxed text-ink/65">Defina a identidade dos seus commits.</p><pre class="mt-6 overflow-x-auto border-2 border-ink bg-ink p-4 font-mono text-sm leading-relaxed text-lime"><code>git config --global user.name &quot;Seu nome&quot;
+git config --global user.email &quot;voce@email.com&quot;</code></pre></article><article class="border-2 border-ink bg-paper p-6"><span class="font-mono text-3xl font-semibold text-coral">02</span><h3 class="mt-10 font-display text-2xl font-bold">Inicie</h3><p class="mt-3 text-base leading-relaxed text-ink/65">Transforme uma pasta em projeto versionado.</p><pre class="mt-6 overflow-x-auto border-2 border-ink bg-ink p-4 font-mono text-sm leading-relaxed text-lime"><code>mkdir meu-projeto
+cd meu-projeto
+git init</code></pre></article><article class="border-2 border-ink bg-paper p-6"><span class="font-mono text-3xl font-semibold text-coral">03</span><h3 class="mt-10 font-display text-2xl font-bold">Publique</h3><p class="mt-3 text-base leading-relaxed text-ink/65">Conecte o local ao GitHub.</p><pre class="mt-6 overflow-x-auto border-2 border-ink bg-ink p-4 font-mono text-sm leading-relaxed text-lime"><code>git remote add origin URL
+git branch -M main
+git push -u origin main</code></pre></article></div></section>
 
-    </main>
+      <section id="avancado" class="scroll-reveal border-y-2 border-ink bg-ink text-paper"><div class="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28"><div class="mb-12"><p class="mb-3 font-mono text-sm font-semibold uppercase tracking-[.2em] text-lime">capítulo 06 · além do básico</p><h2 class="font-display text-4xl font-bold tracking-tight sm:text-5xl">Quando a história<br />fica complexa.</h2></div><div class="grid gap-5 md:grid-cols-3"><article class="border border-paper/30 p-6"><code class="font-mono text-base text-lime">git stash</code><h3 class="mt-4 font-display text-2xl font-bold">Guarde rascunhos</h3><p class="mt-3 text-base leading-relaxed text-paper/60">Salve temporariamente mudanças que ainda não estão prontas para um commit.</p></article><article class="border border-paper/30 p-6"><code class="font-mono text-base text-lime">git rebase</code><h3 class="mt-4 font-display text-2xl font-bold">Reorganize</h3><p class="mt-3 text-base leading-relaxed text-paper/60">Reaplique commits sobre uma base atualizada para manter uma linha mais limpa.</p></article><article class="border border-paper/30 p-6"><code class="font-mono text-base text-lime">git bisect</code><h3 class="mt-4 font-display text-2xl font-bold">Investigue</h3><p class="mt-3 text-base leading-relaxed text-paper/60">Use busca binária no histórico para encontrar o commit que introduziu um bug.</p></article></div><div class="mt-5 border border-paper/30 p-6"><h3 class="font-display text-2xl font-bold">Desfazer com consciência</h3><div class="mt-5 grid gap-5 font-mono text-base sm:grid-cols-3"><p><span class="text-lime">git restore</span><br /><span class="text-paper/60">descarta alteração local</span></p><p><span class="text-lime">git revert HASH</span><br /><span class="text-paper/60">desfaz com novo commit</span></p><p><span class="text-lime">git reset</span><br /><span class="text-paper/60">reescreve história local</span></p></div></div></div></section>
 
-    <footer class="scroll-reveal border-t-2 border-ink bg-lime"><div class="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-8 text-sm sm:flex-row sm:items-center sm:justify-between lg:px-8"><p class="font-display font-bold">Faça commit das suas ideias.</p><p class="font-mono text-xs">feito para aprender · 2026</p></div></footer>
-    <script>
-      const revealItems = document.querySelectorAll('.scroll-reveal');
-      const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        });
-      }, { threshold: 0.12 });
-      revealItems.forEach((item) => revealObserver.observe(item));
-    </script>
-  </body>
-</html>
+      <section id="seguranca" class="scroll-reveal mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28"><div class="grid gap-12 lg:grid-cols-[.8fr_1.2fr]"><div><p class="mb-3 font-mono text-sm font-semibold uppercase tracking-[.2em] text-coral">capítulo 07 · disciplina</p><h2 class="font-display text-4xl font-bold tracking-tight sm:text-5xl">Antes de<br />publicar.</h2><p class="mt-6 max-w-sm text-lg leading-relaxed text-ink/65">Uma boa história também protege o projeto e as pessoas que trabalham nele.</p></div><div class="border-2 border-ink bg-paper shadow-hard"><div class="border-b-2 border-ink bg-lime p-5 font-display text-xl font-bold">checklist do commit</div><ul class="divide-y-2 divide-ink/15 p-2 text-lg"><li class="flex gap-4 p-4"><span class="font-mono text-coral">01</span><span>Revise <code>git diff --staged</code>.</span></li><li class="flex gap-4 p-4"><span class="font-mono text-coral">02</span><span>Nunca publique tokens, senhas ou `.env`.</span></li><li class="flex gap-4 p-4"><span class="font-mono text-coral">03</span><span>Teste antes de abrir o Pull Request.</span></li><li class="flex gap-4 p-4"><span class="font-mono text-coral">04</span><span>Prefira commits pequenos e mensagens claras.</span></li></ul></div></div></section>
+
+      <section id="referencia" class="scroll-reveal border-t-2 border-ink bg-coral"><div class="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28"><div class="flex flex-col justify-between gap-6 md:flex-row md:items-end"><div><p class="mb-3 font-mono text-sm font-semibold uppercase tracking-[.2em]">consulta rápida</p><h2 class="font-display text-4xl font-bold tracking-tight sm:text-5xl">Comandos para<br />deixar por perto.</h2></div><a href="README.md" class="border-2 border-ink bg-paper px-5 py-3 font-display text-base font-bold shadow-[3px_3px_0_#161616] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none">ler a apostila completa ↗</a></div><div class="mt-12 grid border-2 border-ink bg-paper sm:grid-cols-2 lg:grid-cols-4"><div class="border-b-2 border-ink p-5 sm:border-r-2"><code class="font-mono text-base font-semibold text-coral">git status</code><p class="mt-2 text-base text-ink/60">ver o estado</p></div><div class="border-b-2 border-ink p-5 lg:border-r-2"><code class="font-mono text-base font-semibold text-coral">git switch -c nome</code><p class="mt-2 text-base text-ink/60">criar branch</p></div><div class="border-b-2 border-ink p-5 sm:border-r-2 lg:border-b-0"><code class="font-mono text-base font-semibold text-coral">git log --oneline</code><p class="mt-2 text-base text-ink/60">ver histórico</p></div><div class="p-5"><code class="font-mono text-base font-semibold text-coral">git revert HASH</code><p class="mt-2 text-base text-ink/60">desfazer com segurança</p></div></div></div></section>
++    </main>
++
++    <footer class="scroll-reveal border-t-2 border-ink bg-lime"><div class="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-8 text-base sm:flex-row sm:items-center sm:justify-between lg:px-8"><p class="font-display font-bold">Código bom merece história.</p><p class="font-mono text-sm">apostila Git · do zero ao avançado</p></div></footer>
++    <script>
++      const revealItems = document.querySelectorAll('.scroll-reveal');
++      const revealObserver = new IntersectionObserver((entries, observer) => {
++        entries.forEach((entry) => {
++          if (!entry.isIntersecting) return;
++          entry.target.classList.add('is-visible');
++          observer.unobserve(entry.target);
++        });
++      }, { threshold: 0.12 });
++      revealItems.forEach((item) => revealObserver.observe(item));
++    </script>
++  </body>
++</html>
