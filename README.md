@@ -2,6 +2,11 @@
 
 ## Do zero ao avançado
 
+### Alunos responsáveis
+
+- Gabriel Siqueira
+- Danton Ribeiro
+
 Este material apresenta o Git de forma progressiva: primeiro a ideia de controle de versão, depois o fluxo diário, a colaboração com GitHub e, por fim, recursos para trabalhar com mais segurança e produtividade.
 
 > **Objetivo:** ao terminar, você deverá conseguir criar um repositório, registrar mudanças, trabalhar com branches, colaborar por pull requests, desfazer operações com segurança e investigar o histórico de um projeto.
